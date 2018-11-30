@@ -1,2 +1,2 @@
 # insomnia
-C++ small framework with boost and pistachio and STL and libpqxx
+C++ small framework with boost and pistache and STL and libpqxx
