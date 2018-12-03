@@ -2,7 +2,7 @@
 # TODO: Move `libmongoclient.a` to /usr/local/lib so this can work on production servers
 #
 
-CC := g++ -std=c++11 # This is the main compiler
+CC := g++ -std=c++14 # This is the main compiler
 # CC := clang --analyze # and comment out the linker last line for sanity
 SRCDIR := src
 BUILDDIR := build
@@ -12,16 +12,19 @@ SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 CFLAGS := -g # -Wall
-LIB := -pthread -L lib -lboost_log -lboost_log_setup -lboost_regex
-LIB += -lboost_thread -lboost_filesystem -lboost_system -lboost_date_time 
-LIB +=	-lpistache
+LIBPQ := -lpqxx -lpq
+LIB := -pthread -lboost_log -lboost_log_setup -lboost_regex
+LIB += -lboost_thread -lboost_filesystem -lboost_system -lboost_date_time
+LIB += -lpistache
 INC := -Iinclude
 #BADL := -BOOST_ALL_NO_LIB
 BADL :=  -DBOOST_LOG_DYN_LINK
+INCPQ := -I /usr/local/include/pqxx/
+LIBPQPATH := -L /usr/local/lib/
 
 $(TARGET): $(OBJECTS)
 	@echo " Linking..."
-	@echo " $(CC) $^ $(BADL) -o $(TARGET) $(LIB)"; $(CC) $^ $(BADL) -o $(TARGET) $(LIB)
+	@echo " $(CC) $(INCPQ) $(LIBPQPATH) $^ $(BADL) $(LIBPQ) -o $(TARGET) $(LIB)"; $(CC) $(INCPQ) $(LIBPQPATH) $^ $(BADL) $(LIBPQ) -o $(TARGET) $(LIB)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
