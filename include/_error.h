@@ -6,7 +6,7 @@
 
 class _error : public std::runtime_error {
    public:
-      _error( const std::string & emsg ) 
+      _error( const std::string & emsg )
          : std::runtime_error( emsg ) {
       }
 };
