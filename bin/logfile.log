@@ -1,0 +1,7 @@
+0000001 | 2018-12-03, 16:38:56.917136 [info] - Opened database successfully: pgguide
+0000002 | 2018-12-03, 16:38:56.917327 [info] - Connected to database: pgguide
+0000003 | 2018-12-03, 16:38:56.924418 [info] - start writing data in csv: products.csv
+0000004 | 2018-12-03, 16:38:56.924968 [info] - end writing data in csv: products.csv
+0000005 | 2018-12-03, 16:38:56.934102 [info] - Opened database successfully: pgguide
+0000006 | 2018-12-03, 16:38:56.934250 [info] - Connected to database: pgguide
+0000007 | 2018-12-03, 16:38:56.997915 [error] - Error: unknown exception
