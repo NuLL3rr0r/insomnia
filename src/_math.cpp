@@ -51,3 +51,8 @@ int _math::convertBinaryToDecimal(long long n)
 	}
 	return decimalNumber;
 }
+long _math::fibonacci(unsigned n)
+{
+    if (n < 2) return n;
+    return fibonacci(n-1) + fibonacci(n-2);
+}

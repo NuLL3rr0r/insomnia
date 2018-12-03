@@ -57,6 +57,9 @@ int main_cpp(int argc, char const *argv[])
 	//auto bar = foo;  //warning???
 	decltype(foo) sds = 210;
 
+	typedef long int *pint32;
+	pint32 x, y, z;
+
 	cout<<"size of char is: "<<sizeof(char)<<endl;
 	cout<<"size of short is: "<<sizeof(short)<<endl;
 	cout<<"size of int is: "<<sizeof(int)<<endl;
@@ -77,6 +80,7 @@ int main_cpp(int argc, char const *argv[])
 
 
 	//-----------------------------  string ----------------------------------//
+	char name[] = "hello";
 	string str;
 	str = "this is my string";
 	cout<<str.size()<<" "<<str<<endl;
@@ -116,12 +120,51 @@ int main_cpp(int argc, char const *argv[])
 
 	//-------------------------  std::stoi  ----------------------------------//
 	std::string strInt("123");
-  	int n1 = std::stoi(strInt);
-  	int n2 = 123;
-  	std::string strInt2 = std::to_string(n2);
-  	char ch = 'B';
-  	std::string s5 = std::string(1, ch);
-  	//-----------------------------------------------------------------------//
+	int n1 = std::stoi(strInt);
+	int n2 = 123;
+	std::string strInt2 = std::to_string(n2);
+	char ch = 'B';
+	std::string s5 = std::string(1, ch);
+	//-----------------------------------------------------------------------//
+
+	//-------------------------   date/time  ----------------------------------//
+
+	// current date/time based on current system
+	time_t now = time(0);
+
+	// convert now to string form
+	char* dt = ctime(&now);
+
+	// convert now to string form
+	std::string strdt = ctime(&now);
+
+	std::cout<< "(now)[time_t now = time(0);]: "<< now <<std::endl;
+	std::cout<< "(dt)[char* dt = ctime(&now);]: "<< dt <<std::endl;
+	std::cout<< "(strdt)[std::string strdt = ctime(&now);]: "<< strdt <<std::endl;
+	//-----------------------------------------------------------------------//
+
+	//-------------------------   typedef / enum -------------------------------//
+	typedef int feet;
+	feet a = 100;
+	std::cout<<a<<"\n";
+
+	enum colors {blue, red, green};
+	colors c;
+	c = red;
+	std::cout<<c<<"\n";
+	//-----------------------------------------------------------------------//
+
+	//-------------------------   random numbers -------------------------------//
+	/* generate 10  random numbers. */
+	// set the seed
+	srand( (unsigned)time( NULL ) );
+	int i, j;
+	for(i = 0; i < 10; i++ ) {
+		// generate actual random number
+		j = rand();
+		std::cout <<" Random Number : " << j << std::endl;
+	}
+	//-----------------------------------------------------------------------//
 
 	return 0;
 }
